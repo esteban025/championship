@@ -1,0 +1,11 @@
+.btn {
+  border-radius: 999px;
+  padding: 1rem 1.5rem;
+}
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-forest-green-50);
+}
+.btn-secondary {
+  border: 1px solid;
+}

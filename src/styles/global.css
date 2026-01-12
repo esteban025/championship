@@ -1,0 +1,25 @@
+@import "tailwindcss";
+@import "./buttons.css";
+@import '@fontsource-variable/inter-tight';
+
+
+@theme {
+  --color-forest-green-50: #eeffed;
+  --color-forest-green-100: #d6ffd6;
+  --color-forest-green-200: #b0ffaf;
+  --color-forest-green-300: #71ff71;
+  --color-forest-green-400: #2ffb2d;
+  --color-forest-green-500: #03e502;
+  --color-forest-green-600: #04bf00;
+  --color-forest-green-700: #009700;
+  --color-forest-green-800: #067507;
+  --color-forest-green-900: #085f09;
+  --color-forest-green-950: #003601;
+  --color-primary: var(--color-forest-green-700);
+
+}
+
+body {
+  font-family: 'Inter Tight Variable', sans-serif;
+  letter-spacing: .5px;
+}

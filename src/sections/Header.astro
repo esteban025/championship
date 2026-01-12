@@ -1,0 +1,53 @@
+---
+const nav = [
+  { name: "Características", href: "#characters-section" },
+  { name: "Precios", href: "#prices-section" },
+];
+---
+
+<div
+  class="fixed top-0 w-11/12 left-1/2 -translate-x-1/2 bg-white/50 backdrop-blur-md z-50 header"
+>
+  <header class="flex items-center gap-2 justify-between p-2">
+    <div class="logo">
+      <span>TorneoPro</span>
+    </div>
+    <nav class="nav-header">
+      <ul class="nav-links flex items-center gap-4">
+        {
+          nav.map((item) => (
+            <li>
+              <a href={item.href}>{item.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="cta-header">
+      <a href="#" class="btn btn-primary block">Registrarse</a>
+    </div>
+  </header>
+</div>
+
+<style>
+  .header {
+    animation: scrollDown 0.5s ease-in-out both;
+    animation-timeline: scroll(root);
+    animation-range: 0 200px;
+  }
+  @keyframes scrollDown {
+    100% {
+      transform: scale(0.95) translateY(10px);
+      border-radius: 9999px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+  }
+  .nav-header {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .nav-header {
+      display: block;
+    }
+  }
+</style>
