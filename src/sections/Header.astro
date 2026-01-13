@@ -1,4 +1,5 @@
 ---
+import LogoIcon from "@/assets/logo.svg";
 const nav = [
   { name: "Características", href: "#characters-section" },
   { name: "Precios", href: "#prices-section" },
@@ -6,11 +7,14 @@ const nav = [
 ---
 
 <div
-  class="fixed top-0 w-11/12 left-1/2 -translate-x-1/2 bg-white/50 backdrop-blur-md z-50 header"
+  class="fixed top-2 w-11/12 left-1/2 -translate-x-1/2 backdrop-blur-sm z-50 header rounded-full"
 >
   <header class="flex items-center gap-2 justify-between p-2">
-    <div class="logo">
-      <span>TorneoPro</span>
+    <div class="logo ml-2">
+      <a href="#" class="flex items-center gap-2 font-semibold text-lg">
+        <LogoIcon class="h-8 w-auto" />
+        <span class="text-shadow-lg text-shadow-green-100">Championship</span>
+      </a>
     </div>
     <nav class="nav-header">
       <ul class="nav-links flex items-center gap-4">
@@ -37,9 +41,9 @@ const nav = [
   }
   @keyframes scrollDown {
     100% {
+      background-color: #ffffff50;
       transform: scale(0.95) translateY(10px);
-      border-radius: 9999px;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.2);
     }
   }
   .nav-header {

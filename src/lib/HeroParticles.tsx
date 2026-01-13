@@ -1,14 +1,13 @@
 import { useEffect, useRef } from 'react'
 import gsap from 'gsap'
+import ReactDOMServer from 'react-dom/server'
 
-interface Particle {
-  x: number
-  y: number
-  size: number
-  speedX: number
-  speedY: number
-  opacity: number
-}
+// SVG de balón de fútbol
+const SoccerBallSVG = ({ size = 32, opacity = .5 }: { size?: number; opacity?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" style={{ opacity }} fill="none" stroke="#00df81" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="icon icon-tabler icon-tabler-soccer-ball">
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 12a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M12 7l4.76 3.45l-1.76 5.55h-6l-1.76 -5.55l4.76 -3.45" /><path d="M12 7v-4m3 13l2.5 3m-.74 -8.55l3.74 -1.45m-11.44 7.05l-2.56 2.95m.74 -8.55l-3.74 -1.45" />
+  </svg>
+)
 
 export function HeroParticles() {
   const containerRef = useRef<HTMLDivElement>(null)
@@ -17,39 +16,45 @@ export function HeroParticles() {
     const container = containerRef.current
     if (!container) return
 
-    const particleCount = 25
+    const particleCount = 15
     const elements: HTMLElement[] = []
 
     for (let i = 0; i < particleCount; i++) {
-      const particle = document.createElement('div')
-      particle.className = 'particle'
+      const wrapper = document.createElement('div')
+      wrapper.className = 'soccer-particle'
 
-      const size = Math.random() * 3 + 2
-      const opacity = Math.random() * 0.3 + 0.1
+      const size = Math.random() * 30 + 20
+      const opacity = Math.random() * 0.2 + 0.1
 
-      particle.style.cssText = `
+      wrapper.style.cssText = `
         position: absolute;
-        width: ${size}px;
-        height: ${size}px;
-        background: rgba(34, 197, 94, ${opacity});
-        border-radius: 50%;
-        pointer-events: none;
         left: ${Math.random() * 100}%;
         top: ${Math.random() * 100}%;
+        pointer-events: none;
       `
 
-      container.appendChild(particle)
-      elements.push(particle)
+      wrapper.innerHTML = ReactDOMServer.renderToStaticMarkup(<SoccerBallSVG size={size} opacity={opacity} />)
+      container.appendChild(wrapper)
+      elements.push(wrapper)
 
-      gsap.to(particle, {
-        y: -100 - Math.random() * 50,
-        x: (Math.random() - 0.5) * 200,
-        duration: 5 + Math.random() * 3,
-        ease: 'none',
-        yoyo: true,
-        repeat: -1,
-        delay: Math.random() * 2,
+      // Animación compleja con rotación y movimiento
+      const tl = gsap.timeline({ repeat: -1 })
+
+      tl.to(wrapper, {
+        y: -150 - Math.random() * 100,
+        x: (Math.random() - 0.5) * 300,
+        rotation: 360 + Math.random() * 360,
+        duration: 8 + Math.random() * 4,
+        ease: 'power1.inOut',
+        delay: Math.random() * 3,
       })
+        .to(wrapper, {
+          y: 0,
+          x: 0,
+          rotation: 720 + Math.random() * 360,
+          duration: 8 + Math.random() * 4,
+          ease: 'power1.inOut',
+        })
     }
 
     return () => {
@@ -58,49 +63,4 @@ export function HeroParticles() {
   }, [])
 
   return <div ref={containerRef} className="absolute inset-0 pointer-events-none overflow-hidden" />
-}
-
-export function FloatingElements() {
-  const containerRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const elements: HTMLElement[] = []
-    const shapes = ['●', '◆', '▲', '★']
-    const colors = ['rgba(34, 197, 94, 0.3)', 'rgba(34, 197, 94, 0.35)', 'rgba(34, 197, 94, 0.4)']
-
-    for (let i = 0; i < 8; i++) {
-      const element = document.createElement('div')
-      element.textContent = shapes[Math.floor(Math.random() * shapes.length)]
-      element.style.cssText = `
-        position: absolute;
-        font-size: ${Math.random() * 25 + 15}px;
-        color: ${colors[Math.floor(Math.random() * colors.length)]};
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-        pointer-events: none;
-        user-select: none;
-      `
-      container.appendChild(element)
-      elements.push(element)
-
-      gsap.to(element, {
-        y: -30 + Math.random() * 40,
-        rotation: Math.random() * 360 - 180,
-        duration: 4 + Math.random() * 2,
-        ease: 'sine.inOut',
-        yoyo: true,
-        repeat: -1,
-        delay: Math.random() * 2,
-      })
-    }
-
-    return () => {
-      elements.forEach((el) => el.remove())
-    }
-  }, [])
-
-  return <div ref={containerRef} className="absolute inset-0 pointer-events-none" />
 }

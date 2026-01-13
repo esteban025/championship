@@ -1,5 +1,5 @@
 ---
-import { HeroParticles, FloatingElements } from "@/lib/HeroParticles";
+import { HeroParticles } from "@/lib/HeroParticles";
 import { Icon } from "astro-icon/components";
 const stats = [
   { label: "Organizadores", value: "+500", icon: "mdi:account-group" },
@@ -9,10 +9,9 @@ const stats = [
 ---
 
 <section
-  class="min-h-dvh flex items-center justify-center flex-col gap-5 p-2 relative overflow-hidden"
+  class="min-h-dvh flex items-center justify-center flex-col p-2 relative overflow-hidden hero-section"
 >
   <HeroParticles client:load />
-  <FloatingElements client:load />
   <span
     class="hero-announcement block p-1 px-3 rounded-full border border-primary bg-forest-green-100 text-sm text-neutral-700"
     >Control en todo momento</span
@@ -20,7 +19,7 @@ const stats = [
   <article class="w-full max-w-4xl mx-auto space-y-6 p-4">
     <div id="headline-principal" class="space-y-2">
       <h1
-        class="title-hero font-semibold text-neutral-900 text-center text-balance leading-[1.1]"
+        class="title-hero font-semibold text-neutral-900 text-center text-balance leading-[1.1] mb-6"
       >
         ¡Gestiona tus torneos como un profesional!
       </h1>
@@ -53,6 +52,13 @@ const stats = [
 </section>
 
 <style>
+  .hero-section {
+    background: linear-gradient(
+      to bottom,
+      var(--color-forest-green-100) 10%,
+      transparent
+    );
+  }
   h1 {
     font-size: clamp(2.5rem, 5vw, 4rem);
   }
