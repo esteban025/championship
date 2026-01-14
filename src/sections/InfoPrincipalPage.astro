@@ -1,11 +1,75 @@
 ---
-import { imagesHero } from "../lib/images-hero";
-import { ScrollVideo } from "../components/ScrollVideo";
+import { Icon } from "astro-icon/components";
+import CardCharactes from "@/components/CardCharactes.astro";
+const characters = [
+  {
+    title: "Gestión de Torneos",
+    description:
+      "Crea y administra multiples campeonatos con diferentes formatos y reglas",
+    icon: "mdi:trophy",
+  },
+  {
+    title: "Gestión de Equipos",
+    description:
+      "Registra equipos juagadores, asigna números y colores personalizados para cada equipo.",
+    icon: "mdi:account-group",
+  },
+  {
+    title: "Programación de Partidos",
+    description:
+      "Agenda fechas, define horarios y canales. Actualiza resultados en tiempo real",
+    icon: "mdi:calendar-clock",
+  },
+  {
+    title: "Estadísticas Automáticas",
+    description:
+      "Tabla de posiciones, maximos goleadores y mas. Todo se calcula automaticamente",
+    icon: "mdi:chart-bar",
+  },
+  {
+    title: "Resultados en vivo",
+    description:
+      "Actualiza marcadores en tiempo real y manten a todos informados del progreso del torneo",
+    icon: "mdi:soccer-field",
+  },
+  {
+    title: "Historial Completo",
+    description:
+      "Guarda el historial de temporadas anteriores, partidos head-to-head y estadísticas historicas",
+    icon: "mdi:monitor-dashboard",
+  },
+];
 ---
 
-<section id="characters-section">
-  <div style="display: flex; flex-direction: column; align-items: center;">
-    <ScrollVideo images={imagesHero} client:load />
-    <div>informacion de pagina</div>
-  </div>
+<section
+  id="characters-section"
+  class="px-4 w-full max-w-5xl mx-auto flex flex-col gap-14 items-center"
+>
+  <header class="space-y-2">
+    <h2 class="text-center subtitle-section font-bold">
+      Características Principales
+    </h2>
+    <p class="text-neutral-500 text-balance text-center">
+      Todo lo que necesitas para gestionar tus campeonatos de manera eficiente y
+      profesional
+    </p>
+  </header>
+  <section
+    class="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-6 w-full relative"
+  >
+    {
+      characters.map((char) => (
+        <CardCharactes
+          title={char.title}
+          description={char.description}
+          icon={char.icon}
+        />
+      ))
+    }
+  </section>
 </section>
+<style>
+  .subtitle-section {
+    font-size: clamp(1.2rem, 2.5vw, 1.875rem);
+  }
+</style>
