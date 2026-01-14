@@ -9,14 +9,16 @@ const stats = [
 ---
 
 <section
-  class="min-h-dvh flex items-center justify-center flex-col p-2 relative overflow-hidden hero-section"
+  class="min-h-dvh flex items-center justify-around flex-col px-2 relative overflow-hidden hero-section"
 >
   <HeroParticles client:load />
-  <span
-    class="hero-announcement block p-1 px-3 rounded-full border border-primary bg-forest-green-100 text-sm text-neutral-700"
-    >Control en todo momento</span
+  <article
+    class="w-full max-w-4xl mx-auto space-y-6 p-4 flex flex-col gap-4 items-center"
   >
-  <article class="w-full max-w-4xl mx-auto space-y-6 p-4">
+    <span
+      class="hero-announcement w-max block p-1 px-3 rounded-full border border-primary bg-forest-green-200 text-sm text-neutral-700"
+      >Control en todo momento</span
+    >
     <div id="headline-principal" class="space-y-2">
       <h1
         class="title-hero font-semibold text-neutral-900 text-center text-balance leading-[1.1] mb-6"
@@ -34,20 +36,20 @@ const stats = [
       >
       <a href="#prices-section" class="btn btn-secondary">Ver precios</a>
     </div>
-    <div
-      id="hero-stats"
-      class="flex items-center justify-center gap-10 gap-y-4 mt-10 w-full flex-wrap"
-    >
-      {
-        stats.map((stat) => (
-          <div class="stat-item flex items-center gap-1 text-neutral-500 text-sm">
-            <Icon name={stat.icon} class="stat-icon" size="2em" />
-            <span class="stat-value">{stat.value}</span>
-            <span class="stat-label">{stat.label}</span>
-          </div>
-        ))
-      }
-    </div>
+  </article>
+  <article
+    id="hero-stats"
+    class="flex items-center justify-center gap-10 gap-y-4 w-full flex-wrap"
+  >
+    {
+      stats.map((stat) => (
+        <div class="stat-item flex items-center gap-1 text-neutral-500 text-sm">
+          <Icon name={stat.icon} class="stat-icon" size="2em" />
+          <span class="stat-value">{stat.value}</span>
+          <span class="stat-label">{stat.label}</span>
+        </div>
+      ))
+    }
   </article>
 </section>
 

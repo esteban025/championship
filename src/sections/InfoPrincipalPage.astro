@@ -1,1 +1,11 @@
-<section id="characters-section">informacion de pagina</section>
+---
+import { imagesHero } from "../lib/images-hero";
+import { ScrollVideo } from "../components/ScrollVideo";
+---
+
+<section id="characters-section">
+  <div style="display: flex; flex-direction: column; align-items: center;">
+    <ScrollVideo images={imagesHero} client:load />
+    <div>informacion de pagina</div>
+  </div>
+</section>

@@ -7,7 +7,7 @@ const nav = [
 ---
 
 <div
-  class="fixed top-2 w-11/12 left-1/2 -translate-x-1/2 backdrop-blur-sm z-50 header rounded-full"
+  class="fixed top-2 w-11/12 left-1/2 -translate-x-1/2 z-50 header rounded-full"
 >
   <header class="flex items-center gap-2 justify-between p-2">
     <div class="logo ml-2">
@@ -16,7 +16,7 @@ const nav = [
         <span class="text-shadow-lg text-shadow-green-100">Championship</span>
       </a>
     </div>
-    <nav class="nav-header">
+    <!-- <nav class="nav-header">
       <ul class="nav-links flex items-center gap-4">
         {
           nav.map((item) => (
@@ -26,7 +26,7 @@ const nav = [
           ))
         }
       </ul>
-    </nav>
+    </nav> -->
     <div class="cta-header">
       <a href="#" class="btn btn-primary block">Registrarse</a>
     </div>
@@ -42,6 +42,7 @@ const nav = [
   @keyframes scrollDown {
     100% {
       background-color: #ffffff50;
+      backdrop-filter: blur(10px);
       transform: scale(0.95) translateY(10px);
       box-shadow: 0 4px 10px -1px rgba(0, 0, 0, 0.2);
     }
